@@ -1,0 +1,55 @@
+.authForm {
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.authForm h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.errorMessage {
+    color: #dc2626;
+    background: #f8d7da;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.authForm div {
+    margin-bottom: 15px;
+}
+
+.authForm label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.authForm input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.authForm button {
+    width: 100%;
+    padding: 12px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.authForm button:disabled {
+    background: #6c757d;
+    cursor: not-allowed;
+}
