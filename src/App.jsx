@@ -153,7 +153,7 @@ const App = () => {
                 TaskFlow
               </h1>
               <p className={`${darkMode ? 'text-slate-300' : 'text-slate-600'} mt-2`}>
-                Welcome back! Let's get things done ✨
+                Welcome back! Let&apos;s get things done ✨
               </p>
             </div>
 

@@ -17,7 +17,7 @@ export default function TaskList({ tasks, onToggle, onDelete }: TaskListProps) {
     return (
         <div>
             {tasks.length === 0 && (
-                <div style={{ textAlign: 'center', padding: '40px', color: '#6c757d' }}>
+                <div className="text-center py-10 text-slate-500 dark:text-slate-400">
                     No tasks yet
                 </div>
             )}

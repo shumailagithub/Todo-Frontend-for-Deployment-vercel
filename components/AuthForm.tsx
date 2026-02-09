@@ -7,7 +7,6 @@ import { useState, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import { register, login } from '@/lib/api';
 import { setAuth } from '@/lib/auth';
-import styles from './AuthForm.module.css';
 
 interface AuthFormProps {
     mode: 'login' | 'register';
@@ -65,8 +64,6 @@ export function AuthForm({ mode, onSuccess }: AuthFormProps) {
                 });
 
                 if (onSuccess) onSuccess();
-
-                router.push('/dashboard');
             } else {
                 // Login user
                 if (!username || !password) {
@@ -84,8 +81,6 @@ export function AuthForm({ mode, onSuccess }: AuthFormProps) {
                 });
 
                 if (onSuccess) onSuccess();
-
-                router.push('/dashboard');
             }
         } catch (err: any) {
             setError((err as Error).message || 'Authentication failed');
@@ -95,44 +90,73 @@ export function AuthForm({ mode, onSuccess }: AuthFormProps) {
     };
 
     return (
-        <div className={styles.authForm}>
-            <h1>{mode === 'login' ? 'Login' : 'Register'}</h1>
-            {error && <div className="error-message">{error}</div>}
-            <form onSubmit={handleSubmit}>
+        <div className="space-y-4">
+            <h2 className="text-xl font-bold text-white mb-2">{mode === 'login' ? 'Sign In' : 'Sign Up'}</h2>
+            
+            {error && (
+                <div className="p-3 bg-red-500/20 border border-red-500/30 rounded-lg text-red-300 text-sm">
+                    {error}
+                </div>
+            )}
+            
+            <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
-                    <label>Username:</label>
+                    <label className="block text-slate-300 text-sm font-medium mb-2">
+                        Username
+                    </label>
                     <input
                         type="text"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
                         disabled={loading}
                         required
+                        className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                        placeholder="Enter username"
                     />
                 </div>
+                
                 <div>
-                    <label>Password:</label>
+                    <label className="block text-slate-300 text-sm font-medium mb-2">
+                        Password
+                    </label>
                     <input
                         type="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         disabled={loading}
                         required
+                        className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                        placeholder="••••••••"
                     />
                 </div>
+                
                 {mode === 'register' && (
                     <div>
-                        <label>Confirm Password:</label>
+                        <label className="block text-slate-300 text-sm font-medium mb-2">
+                            Confirm Password
+                        </label>
                         <input
                             type="password"
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
                             disabled={loading}
                             required
+                            className="w-full px-4 py-3 bg-white/5 border border-white/20 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                            placeholder="••••••••"
                         />
                     </div>
                 )}
-                <button type="submit" disabled={loading}>
-                    {loading ? 'Processing...' : (mode === 'login' ? 'Login' : 'Register')}
+                
+                <button 
+                    type="submit" 
+                    disabled={loading}
+                    className="w-full py-3 bg-gradient-to-r from-purple-500 to-blue-500 text-white font-medium rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
+                >
+                    {loading ? (
+                        <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
+                    ) : (
+                        mode === 'login' ? 'Sign In' : 'Sign Up'
+                    )}
                 </button>
             </form>
         </div>

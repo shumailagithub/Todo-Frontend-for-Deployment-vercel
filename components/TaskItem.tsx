@@ -14,43 +14,20 @@ interface TaskItemProps {
 
 export default function TaskItem({ task, onToggle, onDelete }: TaskItemProps) {
     return (
-        <div style={{
-            border: '1px solid #e0e0e',
-            borderRadius: '4px',
-            padding: '12px',
-            marginBottom: '10px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            backgroundColor: task.completed ? '#f8f9fa' : 'white'
-        }}>
-            <div style={{ display: 'flex', alignItems: 'flex-start', flex: 1 }}>
+        <div className={`border border-slate-200 dark:border-slate-700 rounded-lg p-4 mb-3 flex items-center justify-between ${task.completed ? 'bg-slate-50 dark:bg-slate-800/50' : 'bg-white dark:bg-slate-800'}`}>
+            <div className="flex items-start flex-1">
                 <input
                     type="checkbox"
                     checked={task.completed}
                     onChange={onToggle}
-                    style={{
-                        marginRight: '12px',
-                        cursor: 'pointer',
-                        width: '18px',
-                        height: '18px'
-                    }}
+                    className="mr-3 mt-1 cursor-pointer w-5 h-5 text-purple-600 rounded focus:ring-purple-500"
                 />
-                <div>
-                    <div style={{
-                        fontSize: '16px',
-                        fontWeight: '500',
-                        textDecoration: task.completed ? 'line-through' : 'none',
-                        color: task.completed ? '#6c757d' : '#212529'
-                    }}>
+                <div className="flex-1">
+                    <div className={`font-medium ${task.completed ? 'line-through text-slate-500 dark:text-slate-400' : 'text-slate-800 dark:text-slate-200'}`}>
                         {task.title}
                     </div>
                     {task.description && (
-                        <div style={{
-                            fontSize: '14px',
-                            color: '#6c757d',
-                            marginTop: '4px'
-                        }}>
+                        <div className="text-sm text-slate-600 dark:text-slate-400 mt-1">
                             {task.description}
                         </div>
                     )}
@@ -58,19 +35,10 @@ export default function TaskItem({ task, onToggle, onDelete }: TaskItemProps) {
             </div>
             <button
                 onClick={onDelete}
-                style={{
-                    backgroundColor: '#dc3545',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '4px',
-                    padding: '8px 12px',
-                    cursor: 'pointer',
-                    fontSize: '14px',
-                    fontWeight: 'bold'
-                }}
-                >
-                    Delete
-                </button>
+                className="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg text-sm font-medium transition-colors"
+            >
+                Delete
+            </button>
         </div>
     );
 }

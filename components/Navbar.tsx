@@ -13,38 +13,17 @@ interface NavbarProps {
 
 export default function Navbar({ username, onLogout }: NavbarProps) {
     return (
-        <nav style={{
-            backgroundColor: '#343a40',
-            padding: '15px 30px',
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
-        }}>
-            <h1 style={{
-                color: 'white',
-                fontSize: '24px',
-                margin: 0,
-                fontWeight: 'bold'
-            }}>
-                Todo App
+        <nav className="bg-slate-800 p-4 flex justify-between items-center shadow-md">
+            <h1 className="text-white text-xl font-bold">
+                TaskFlow
             </h1>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
-                <span style={{ color: 'white', fontSize: '16px' }}>
+            <div className="flex items-center gap-4">
+                <span className="text-white text-sm">
                     Welcome, {username}!
                 </span>
                 <button
                     onClick={onLogout}
-                    style={{
-                        backgroundColor: '#dc3545',
-                        color: 'white',
-                        padding: '8px 16px',
-                        border: 'none',
-                        borderRadius: '4px',
-                        cursor: 'pointer',
-                        fontSize: '14px',
-                        fontWeight: 'bold'
-                    }}
+                    className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors"
                 >
                     Logout
                 </button>
